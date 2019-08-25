@@ -87,7 +87,7 @@ a:hover {
 
 footer {
   text-align: center;
-  padding: 15px 0px;
+  padding: 10px 0px;
   color: #7f8c8d;
   font-size: 12px;
   line-height: 2;
@@ -95,7 +95,7 @@ footer {
 
 footer #sign {
   width: 80px;
-  padding: 15px 0px;
+  padding: 13px 0px;
   height: auto;
   vertical-align: middle;
 }
