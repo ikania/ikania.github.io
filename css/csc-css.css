@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: lighter;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-align: center;
+  padding: 25px 0px;
+}
+
+#credit {
+  text-align: center;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:focus {
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#listBlock {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.card {
+  width: 200px;
+  min-height: 200px;
+  margin: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+  border: 0.5px solid #e3e5e6;
+  border-top: solid 10px #1abc9c;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.13);
+          box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.13);
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+}
+
+.card:hover {
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -webkit-box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
+}
+
+.card .cardTitle {
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.card .classLoc {
+  color: #7f8c8d;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.card .workList {
+  padding: 15px;
+  font-size: 13px;
+}
+
+.card .workList .note {
+  list-style: none;
+  padding-top: 10px;
+  font-style: italic;
+  font-size: 12px;
+}
+
+footer {
+  text-align: center;
+  padding: 15px 0px;
+  color: #7f8c8d;
+  font-size: 12px;
+  line-height: 2;
+}
+
+footer #sign {
+  width: 80px;
+  padding: 15px 0px;
+  height: auto;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 625px) {
+  .card {
+    width: inherit;
+  }
+}
+/*# sourceMappingURL=csc-css.css.map */
