@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FAST-NU Course Grade Calculator by Saqib Ali</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+
+<script type="text/javascript">
+
+
+    var getGrade = function(){
+
+        var maxMarks, usrMarks, avgMarks, courseFac, stanDev, zScore, gpa;
+
+        var grade;
+
+        usrMarks = document.getElementById('usrMarks').value;
+        maxMarks = document.getElementById('maxMarks').value;
+        avgMarks = document.getElementById('avgMarks').value;
+        stanDev = document.getElementById('stanDev').value;
+
+        usrMarks = parseFloat(usrMarks);
+        maxMarks = parseFloat(maxMarks);
+        avgMarks = parseFloat(avgMarks);
+        stanDev = parseFloat(stanDev);
+
+        courseFac = 4.0 - ((maxMarks - avgMarks) / stanDev);
+        zScore = (usrMarks - avgMarks) / stanDev;
+        gpa = courseFac + zScore;
+
+        if (gpa > 3.67) {
+            grade = 'A/A+';
+        }
+        else if (gpa >= 3.67) {
+            grade = 'A-';
+        }
+        else if (gpa >= 3.33) {
+            grade = 'B+';
+        }
+        else if (gpa >= 3.0) {
+            grade = 'B';
+        }
+        else if (gpa >= 2.67) {
+            grade = 'B-';
+        }
+        else if (gpa >= 2.33) {
+            grade = 'C+';
+        }
+        else if (gpa >= 2.00) {
+            grade = 'C';
+        }
+        else if (gpa >= 1.67) {
+            grade = 'C-';
+        }
+        else if (gpa >= 1.33) {
+            grade = 'D+';
+        }
+        else if (gpa >= 1.0) {
+            grade = 'D';
+        }
+        else {
+            grade = 'F';
+        }
+
+        document.getElementById('gradeDisplay').innerHTML = grade;
+
+    }
+
+</script>
+
+    <div id="mainContainer">
+
+        <h1>Course Grade Generator</h1>
+        <h4>by Saqib Ali</h4>
+
+        <p style="text-align: left; padding: 30px 0px;">Kindly enter all of the details in the text fields provided below. Try to be as precise as possible for better calculation. Thank you for using this application.</p>
+
+        <p style="text-align: left; padding: 18px 0px 5px 0px;">YOUR MARKS</p>
+        <input type="number" id="usrMarks" class="txtField">
+
+        <br/><br/>
+        <p style="text-align: left; padding: 10px 0px 7px 0px;">MAX MARKS IN COURSE</p>
+        <input type="number" id="maxMarks" class="txtField">
+
+        <br/><br/>
+        <p style="text-align: left; padding: 10px 0px 7px 0px;">AVERAGE MARKS IN COURSE</p>
+        <input type="number" id="avgMarks" class="txtField">
+
+        <br/><br/>
+        <p style="text-align: left; padding: 10px 0px 7px 0px;">STANDARD DEVIATION</p>
+        <input type="number" id="stanDev" class="txtField">
+
+        <h2 id="gradeDisplay"></h2>
+
+        <button class="btn" style="margin-top: 15px;" onclick="getGrade();">GET GRADE</button>
+
+    </div>
+
+</body>
+</html>
