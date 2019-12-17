@@ -54,6 +54,48 @@
 
     }
 
+    var getGradeNum = function(grade) {
+
+        var gNum;
+
+        if (grade == "A/A+") {
+            gNum = "4.0";
+        }
+        else if (grade == "A-") {
+            gNum = "3.67";
+        }
+        else if (grade == "B+") {
+            gNum = "3.33";
+        }
+        else if (grade == "B") {
+            gNum = "3.00";
+        }
+        else if (grade == "B-") {
+            gNum = "2.67";
+        }
+        else if (grade == "C+") {
+            gNum = "2.33";
+        }
+        else if (grade == "C") {
+            gNum = "2.00";
+        }
+        else if (grade == "C-") {
+            gNum = "1.67";
+        }
+        else if (grade == "D+") {
+            gNum = "1.33";
+        }
+        else if (grade == "D") {
+            gNum = "1.00";
+        }
+        else {
+            gNum = "0.00";
+        }
+
+        return gNum;
+
+    }
+
     var getGrade = function(){
 
         var maxMarks, usrMarks, avgMarks, courseFac, stanDev, zScore, gpa;
@@ -78,7 +120,7 @@
         var errNeg = gpa - 0.2;
 
 
-        var message = "Your grade will most probably be " + getGradeVal(gpa) + " but it can also be either " + getGradeVal(errPos) + " or " + getGradeVal(errNeg) + ".";
+        var message = "Your grade will most probably be " + getGradeVal(gpa) + " (" + getGradeNum(getGradeVal(gpa)) + ")" + " but it can also be either " + getGradeVal(errPos) + " (" + getGradeNum(getGradeVal(errPos)) + ")" + " or " + getGradeVal(errNeg) + " (" + getGradeNum(getGradeVal(errNeg)) + ")" + ".";
 
         document.getElementById('gradeDisplay').innerHTML = message;
 
