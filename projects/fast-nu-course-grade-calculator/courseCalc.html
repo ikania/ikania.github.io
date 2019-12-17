@@ -6,31 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FAST-NU Course Grade Calculator by Saqib Ali</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
+
 </head>
 <body>
 
 <script type="text/javascript">
 
-
-    var getGrade = function(){
-
-        var maxMarks, usrMarks, avgMarks, courseFac, stanDev, zScore, gpa;
+    var getGradeVal = function(gpa){
 
         var grade;
-
-        usrMarks = document.getElementById('usrMarks').value;
-        maxMarks = document.getElementById('maxMarks').value;
-        avgMarks = document.getElementById('avgMarks').value;
-        stanDev = document.getElementById('stanDev').value;
-
-        usrMarks = parseFloat(usrMarks);
-        maxMarks = parseFloat(maxMarks);
-        avgMarks = parseFloat(avgMarks);
-        stanDev = parseFloat(stanDev);
-
-        courseFac = 4.0 - ((maxMarks - avgMarks) / stanDev);
-        zScore = (usrMarks - avgMarks) / stanDev;
-        gpa = courseFac + zScore;
 
         if (gpa > 3.67) {
             grade = 'A/A+';
@@ -66,7 +50,37 @@
             grade = 'F';
         }
 
-        document.getElementById('gradeDisplay').innerHTML = grade;
+        return grade;
+
+    }
+
+    var getGrade = function(){
+
+        var maxMarks, usrMarks, avgMarks, courseFac, stanDev, zScore, gpa;
+
+        var grade;
+
+        usrMarks = document.getElementById('usrMarks').value;
+        maxMarks = document.getElementById('maxMarks').value;
+        avgMarks = document.getElementById('avgMarks').value;
+        stanDev = document.getElementById('stanDev').value;
+
+        usrMarks = parseFloat(usrMarks);
+        maxMarks = parseFloat(maxMarks);
+        avgMarks = parseFloat(avgMarks);
+        stanDev = parseFloat(stanDev);
+
+        courseFac = 4.0 - ((maxMarks - avgMarks) / stanDev);
+        zScore = (usrMarks - avgMarks) / stanDev;
+        gpa = courseFac + zScore;
+
+        var errPos = gpa + 0.2;
+        var errNeg = gpa - 0.2;
+
+
+        var message = "Your grade will most probably be " + getGradeVal(gpa) + " but it can also be either " + getGradeVal(errPos) + " or " + getGradeVal(errNeg) + ".";
+
+        document.getElementById('gradeDisplay').innerHTML = message;
 
     }
 
@@ -77,7 +91,7 @@
         <h1>Course Grade Generator</h1>
         <h4>by Saqib Ali</h4>
 
-        <p style="text-align: left; padding: 30px 0px;">Kindly enter all of the details in the text fields provided below. Try to be as precise as possible for better calculation. Thank you for using this application.</p>
+        <p style="text-align: left; padding: 30px 0px;">Kindly enter all of the details in the text fields provided below. Try to be as precise as possible for better calculation.</p>
 
         <p style="text-align: left; padding: 18px 0px 5px 0px;">YOUR MARKS</p>
         <input type="number" id="usrMarks" class="txtField">
@@ -93,10 +107,35 @@
         <br/><br/>
         <p style="text-align: left; padding: 10px 0px 7px 0px;">STANDARD DEVIATION</p>
         <input type="number" id="stanDev" class="txtField">
+        <br>
 
-        <h2 id="gradeDisplay"></h2>
+        <p style="text-align: left; padding: 30px 0px;">By no means this is an official calculator nor it uses a formula formally approved by any of the authorities at FAST-NU. The formula for calculating the grade has been derived using citations from Rutgers University and Wikipedia.</p>
 
         <button class="btn" style="margin-top: 15px;" onclick="getGrade();">GET GRADE</button>
+
+        <br/>
+        <h2 id="gradeDisplay"></h2>
+        <h2 id="gradeDisplayLow"></h2>
+        <h2 id="gradeDisplayHigh"></h2>
+
+
+        <p style="text-align: left; padding: 30px 0px;">You can read more about the formula here: <a href="https://en.wikipedia.org/wiki/Standard_score" target="_blank">Standard Score</a>, but here's a brief overview.</p>
+
+        <p style="text-align: left; padding: 30px 0px;font-family:'Courier New', Courier, monospace; font-size: 15px;">
+            C = 4.0 - ((M - A) / S)<br/>
+            Z = (U - A) / S<br/>
+            GPA = C + Z
+        </p>
+        <p style="text-align: left; padding: 30px 0px;font-family:'Courier New', Courier, monospace; font-size: 15px;">
+            C — Course Factor, M — Maximum Marks<br/>
+            A — Average Marks<br/>
+            Z — Z Score, U — User Marks<br/>
+            GPA — GPA Value
+        </p>
+
+        <img src="../../assets/sign.jpg" height="40px" width="auto" />
+
+        
 
     </div>
 

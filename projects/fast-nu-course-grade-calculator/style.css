@@ -110,7 +110,8 @@ Custom CSS for Grade Generator Application
 
 #mainContainer {
 
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     margin: 0 auto;
     text-align: center;
     padding: 30px 15px;
@@ -120,12 +121,11 @@ Custom CSS for Grade Generator Application
 
     margin: 10px;
     float: left;
-    margin: 0px 10px;
     padding: 5px;
     border-top: none;
     border-right: none;
     border-left: none;
-    width: inherit;
+    width: 90%;
 
 }
 .txtField:focus {
