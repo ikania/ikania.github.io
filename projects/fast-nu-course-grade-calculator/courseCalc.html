@@ -116,8 +116,8 @@
         zScore = (usrMarks - avgMarks) / stanDev;
         gpa = courseFac + zScore;
 
-        var errPos = gpa + 0.2;
-        var errNeg = gpa - 0.2;
+        var errPos = gpa + 0.01;
+        var errNeg = gpa - 0.01;
 
 
         var message = "Your grade will most probably be " + getGradeVal(gpa) + " (" + getGradeNum(getGradeVal(gpa)) + ")" + " but it can also be either " + getGradeVal(errPos) + " (" + getGradeNum(getGradeVal(errPos)) + ")" + " or " + getGradeVal(errNeg) + " (" + getGradeNum(getGradeVal(errNeg)) + ")" + ".";
