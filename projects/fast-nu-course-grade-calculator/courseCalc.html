@@ -4,180 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FAST-NU Course Grade Calculator by Saqib Ali</title>
-    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>FAST Grade Calculator by Saqib Ali</title>
+
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/index-js.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/index-style.css" />
 
 </head>
 <body>
-
-<script type="text/javascript">
-
-    var getGradeVal = function(gpa){
-
-        var grade;
-
-        if (gpa > 3.67) {
-            grade = 'A/A+';
-        }
-        else if (gpa >= 3.67) {
-            grade = 'A-';
-        }
-        else if (gpa >= 3.33) {
-            grade = 'B+';
-        }
-        else if (gpa >= 3.0) {
-            grade = 'B';
-        }
-        else if (gpa >= 2.67) {
-            grade = 'B-';
-        }
-        else if (gpa >= 2.33) {
-            grade = 'C+';
-        }
-        else if (gpa >= 2.00) {
-            grade = 'C';
-        }
-        else if (gpa >= 1.67) {
-            grade = 'C-';
-        }
-        else if (gpa >= 1.33) {
-            grade = 'D+';
-        }
-        else if (gpa >= 1.0) {
-            grade = 'D';
-        }
-        else {
-            grade = 'F';
-        }
-
-        return grade;
-
-    }
-
-    var getGradeNum = function(grade) {
-
-        var gNum;
-
-        if (grade == "A/A+") {
-            gNum = "4.0";
-        }
-        else if (grade == "A-") {
-            gNum = "3.67";
-        }
-        else if (grade == "B+") {
-            gNum = "3.33";
-        }
-        else if (grade == "B") {
-            gNum = "3.00";
-        }
-        else if (grade == "B-") {
-            gNum = "2.67";
-        }
-        else if (grade == "C+") {
-            gNum = "2.33";
-        }
-        else if (grade == "C") {
-            gNum = "2.00";
-        }
-        else if (grade == "C-") {
-            gNum = "1.67";
-        }
-        else if (grade == "D+") {
-            gNum = "1.33";
-        }
-        else if (grade == "D") {
-            gNum = "1.00";
-        }
-        else {
-            gNum = "0.00";
-        }
-
-        return gNum;
-
-    }
-
-    var getGrade = function(){
-
-        var maxMarks, usrMarks, avgMarks, courseFac, stanDev, zScore, gpa;
-
-        var grade;
-
-        usrMarks = document.getElementById('usrMarks').value;
-        maxMarks = document.getElementById('maxMarks').value;
-        avgMarks = document.getElementById('avgMarks').value;
-        stanDev = document.getElementById('stanDev').value;
-
-        usrMarks = parseFloat(usrMarks);
-        maxMarks = parseFloat(maxMarks);
-        avgMarks = parseFloat(avgMarks);
-        stanDev = parseFloat(stanDev);
-
-        courseFac = 4.0 - ((maxMarks - avgMarks) / stanDev);
-        zScore = (usrMarks - avgMarks) / stanDev;
-        gpa = courseFac + zScore;
-
-        var errPos = gpa + 0.01;
-        var errNeg = gpa - 0.01;
-
-
-        var message = "Your grade will most probably be " + getGradeVal(gpa) + " (" + getGradeNum(getGradeVal(gpa)) + ")" + " but it can also be either " + getGradeVal(errPos) + " (" + getGradeNum(getGradeVal(errPos)) + ")" + " or " + getGradeVal(errNeg) + " (" + getGradeNum(getGradeVal(errNeg)) + ")" + ".";
-
-        document.getElementById('gradeDisplay').innerHTML = message;
-
-    }
-
-</script>
-
+    
     <div id="mainContainer">
 
-        <h1>Course Grade Generator</h1>
-        <h4>by Saqib Ali</h4>
+        <div id="fieldLabel">Modified Count Average</div>
+        <input id="MCA" type="number" class="txtField" placeholder="0 - 100" max="100" min="0"/>
 
-        <p style="text-align: left; padding: 30px 0px;">Kindly enter all of the details in the text fields provided below. Try to be as precise as possible for better calculation.</p>
-
-        <p style="text-align: left; padding: 18px 0px 5px 0px;">YOUR MARKS</p>
-        <input type="number" id="usrMarks" class="txtField">
+        <div id="fieldLabel">Absolutes</div>
+        <input id="abs" type="number" class="txtField" placeholder="0 - 100" max="100" min="0"/>
 
         <br/><br/>
-        <p style="text-align: left; padding: 10px 0px 7px 0px;">MAX MARKS IN COURSE</p>
-        <input type="number" id="maxMarks" class="txtField">
+        <button id="calc">GET GRADE</button>
 
         <br/><br/>
-        <p style="text-align: left; padding: 10px 0px 7px 0px;">AVERAGE MARKS IN COURSE</p>
-        <input type="number" id="avgMarks" class="txtField">
+        <div id="grade"></div>
 
         <br/><br/>
-        <p style="text-align: left; padding: 10px 0px 7px 0px;">STANDARD DEVIATION</p>
-        <input type="number" id="stanDev" class="txtField">
-        <br>
+        <table id="grading">
 
-        <p style="text-align: left; padding: 30px 0px;">By no means this is an official calculator nor it uses a formula formally approved by any of the authorities at FAST-NU. The formula for calculating the grade has been derived using citations from Rutgers University and Wikipedia.</p>
+        </table>
 
-        <button class="btn" style="margin-top: 15px;" onclick="getGrade();">GET GRADE</button>
-
-        <br/>
-        <h2 id="gradeDisplay"></h2>
-        <h2 id="gradeDisplayLow"></h2>
-        <h2 id="gradeDisplayHigh"></h2>
-
-
-        <p style="text-align: left; padding: 30px 0px;">You can read more about the formula here: <a href="https://en.wikipedia.org/wiki/Standard_score" target="_blank">Standard Score</a>, but here's a brief overview.</p>
-
-        <p style="text-align: left; padding: 30px 0px;font-family:'Courier New', Courier, monospace; font-size: 15px;">
-            C = 4.0 - ((M - A) / S)<br/>
-            Z = (U - A) / S<br/>
-            GPA = C + Z
-        </p>
-        <p style="text-align: left; padding: 30px 0px;font-family:'Courier New', Courier, monospace; font-size: 15px;">
-            C — Course Factor, M — Maximum Marks<br/>
-            A — Average Marks<br/>
-            Z — Z Score, U — User Marks<br/>
-            GPA — GPA Value
-        </p>
-
-        <img src="../../assets/sign.jpg" height="40px" width="auto" />
-
-        
+        <br/><br/>
+        <p style="text-align: center; width: 100%;font-size: 12px;">&copy; Saqib Ali</p>
 
     </div>
 
