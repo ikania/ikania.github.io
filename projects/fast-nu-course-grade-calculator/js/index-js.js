@@ -88,6 +88,7 @@ $('document').ready(function(){
                     $('#grade').html("Your grade is: " + grade);
                     $('#grading').html("");
 
+					/*
                     if (grade == 'F') {
                         $('#yt-player').css('opacity', '1');
                         $('#yt-player').css('width', '360');
@@ -102,6 +103,7 @@ $('document').ready(function(){
                         $('#yt-player').attr('src', 'https://www.youtube.com/embed/BStqGIkanKk?autoplay=1');
 
                     }
+                    */
 
                     var bDiff = 0;
 
