@@ -1,8 +1,11 @@
 $('document').ready(function(){
 
     function calcGrade(){
+
         var MCA = parseFloat($('#MCA').val());
         MCA = Math.round(MCA);
+
+        var abs = parseInt($('#abs').val());
 
         var pivot;
 
@@ -11,110 +14,153 @@ $('document').ready(function(){
         // Distribution
         var dist = [];
 
-        if (MCA < 50) {
-            pivot = 4;
-        }
-        else if (MCA > 50 && MCA < 65) {
-            pivot = 5;
-        }
-        else {
-            pivot = 6;
-        }
+            if (abs <= 0) {
 
-        for (var i = pivot; i < grades.length; i++) {
+                $('#grade').html("bruh 🙏");
+                $('#grading').html("");
 
-            dist[i] = MCA + (5 * (i - pivot));
-
-        }
-
-        var fReached = false;
-
-        for (var i = pivot; i >= 0; i--) {
-
-            dist[i] = MCA - (5 * (pivot - i));
-            if (dist[i] < 30 && !fReached) {
-                dist[i] = 30;
-                fReached = true;
             }
-            else if (fReached){
-                dist[i] = -1;
-            }
+            else if (MCA < 100 && MCA > 0) {
 
-        }
+                if (MCA < 50) {
+                    pivot = 4;
+                }
+                else if (MCA > 50 && MCA < 65) {
+                    pivot = 5;
+                }
+                else {
+                    pivot = 6;
+                }
 
+                for (var i = pivot; i < grades.length; i++) {
 
-        // Finding the grade
+                    dist[i] = MCA + (5 * (i - pivot));
 
-        var grade = 'F';
-        var abs = parseInt($('#abs').val());
+                }
 
-        if (abs >= 0 && abs <= 100){
-            if (abs > 29){
-                var gradeFound = false;
+                var fReached = false;
 
-                for (var i = dist.length - 1; i >= 0 && !gradeFound; i--) {
+                for (var i = pivot; i >= 0; i--) {
 
-                    if (abs >= dist[i]) {
-                        grade = grades[i];
-                        gradeFound = true;
+                    dist[i] = MCA - (5 * (pivot - i));
+                    if (dist[i] < 30 && !fReached) {
+                        dist[i] = 30;
+                        fReached = true;
+                    }
+                    else if (fReached){
+                        dist[i] = -1;
                     }
 
                 }
 
-                if(!gradeFound) {
-                    grade = 'F'; 
-                    gradeFound = true;  
-                }
 
-            }
-            else {
-                grade = 'F';
-                gradeFound = true;
-            }
-        }
+                // Finding the grade
 
-        if (gradeFound){
-            $('#grade').html("Your grade is: " + grade);
-            $('#grading').html("");
+                var grade = 'F';
+                abs = parseInt($('#abs').val());
 
-            var bDiff = 0;
+                if (abs >= 0 && abs <= 100){
+                    if (abs > 29){
+                        var gradeFound = false;
 
-            for (var i = 0; i < grades.length; i++){
+                        for (var i = dist.length - 1; i >= 0 && !gradeFound; i--) {
 
-                if (dist[i] != -1){
+                            if (abs >= dist[i]) {
+                                grade = grades[i];
+                                gradeFound = true;
+                            }
 
-                    if (i == pivot) {
-                    
-                        $('#grading').append("<tr><td class=\"gradeLabel\" id=\"pGrade\">" + grades[i] + "</td>" + "<td class=\"gradeVal\" id=\"pVal\">" + dist[i] + "</td></tr><br/>");
-                        bDiff++;
+                        }
+
+                        if(!gradeFound) {
+                            grade = 'F'; 
+                            gradeFound = true;  
+                        }
 
                     }
                     else {
+                        grade = 'F';
+                        gradeFound = true;
+                    }
+                }
 
-                        if (grades[i] == grade){
+                if (gradeFound){
+                    $('#grade').html("Your grade is: " + grade);
+                    $('#grading').html("");
 
-                            $('#grading').append("<tr><td class=\"gradeLabel\" id=\"cGrade\">" + grades[i] + "</td>" + "<td class=\"gradeVal\" id=\"cVal\">" + dist[i] + "</td></tr><br/>");
-                            bDiff++
+                    if (grade == 'F') {
+                        $('#yt-player').css('opacity', '1');
+                        $('#yt-player').css('width', '360');
+                        $('#yt-player').css('height', '315');
+                        $('#yt-player').attr('src', 'https://www.youtube.com/embed/QuNhTLVgV2Y?autoplay=1');
                         
-                        }
-                        else {
+                    } else if (grade == 'A' || grade == 'A+') {
 
-                            $('#grading').append("<tr><td class=\"gradeLabel\">" + grades[i] + "</td>" + "<td class=\"gradeVal\">" + dist[i] + "</td></tr><br/>");
-                            bDiff++;
-
-                        }
+                        $('#yt-player').css('opacity', '1');
+                        $('#yt-player').css('width', '360');
+                        $('#yt-player').css('height', '315');
+                        $('#yt-player').attr('src', 'https://www.youtube.com/embed/BStqGIkanKk?autoplay=1');
 
                     }
 
-                    
+                    var bDiff = 0;
+
+                    for (var i = 0; i < grades.length; i++){
+
+                        if (dist[i] != -1){
+
+                            if (i == pivot) {
+                            
+                                $('#grading').append("<tr><td class=\"gradeLabel\" id=\"pGrade\">" + grades[i] + "</td>" + "<td class=\"gradeVal\" id=\"pVal\">" + dist[i] + "</td></tr><br/>");
+                                bDiff++;
+
+                            }
+                            else {
+
+                                if (grades[i] == grade){
+
+                                    $('#grading').append("<tr><td class=\"gradeLabel\" id=\"cGrade\">" + grades[i] + "</td>" + "<td class=\"gradeVal\" id=\"cVal\">" + dist[i] + "</td></tr><br/>");
+                                    bDiff++
+                                
+                                }
+                                else {
+
+                                    $('#grading').append("<tr><td class=\"gradeLabel\">" + grades[i] + "</td>" + "<td class=\"gradeVal\">" + dist[i] + "</td></tr><br/>");
+                                    bDiff++;
+
+                                }
+
+                            }
+
+                            
+                        }
+                    }
+
+
                 }
+
+
+            } else {
+
+                $('#grade').html("bruh 🙏");
+                $('#grading').html("");
+            
             }
 
-
+            console.log("done");
+        
         }
 
-    }
 
+    $('#abs').keypress((evt) => {
+
+        if (evt.keyCode == 13) {
+
+            calcGrade();
+
+        }
+        
+    });
     $('#calc').click(calcGrade);
 
 });

@@ -4,10 +4,15 @@
     margin: 0;
     padding: 0;
     font-family: "Montserrat", sans-serif;
+    color: #ecf0f1;
 
     &:focus {
         outline: none;
     }
+}
+
+body {
+    background-color: #2c3e50;
 }
 
 #grading {
@@ -25,12 +30,12 @@
 
 #cGrade, #cVal {
     background-color: #1abc9c;
-    color: #fff;
+    color: #ecf0f1;
 }
 
 #pGrade, #pVal {
     background-color: #000;
-    color: #fff;
+    color: #ecf0f1;
 }
 
 #mainContainer {
@@ -39,6 +44,16 @@
     margin: 0 auto;
     max-width: 600px;
     text-align: center;
+
+    h3 {
+        font-weight: lighter;
+        text-transform: uppercase;
+    }
+
+    h5 {
+        font-weight: lighter;
+        padding-top: 15px;
+    }
 
     #fieldLabel {
         display: block;
@@ -62,6 +77,7 @@
         vertical-align: middle;
         display: inline-block;
         background-color: #ecf0f1;
+        color: #000;
         border-radius: 5px;
         box-shadow: 2px 2px 10px -5px rgba(0, 0, 0, 0.3);
         transition: 0.2s ease-in-out;
@@ -83,6 +99,7 @@
         text-transform: uppercase;
         transition: 0.2s ease-in-out;
         background-color: #f6e58d;
+        color: #34495e;
         transition: 0.2s ease-in-out;
         box-shadow: 10px 10px 20px 3px rgba(0, 0, 0, 0.2);
         
@@ -95,6 +112,15 @@
 
       #grading {
           line-height: 2;
+      }
+
+      #yt-player {
+
+        box-shadow: 2px 2px 10px -5px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        width: 0;
+        height: 0;
+        
       }
 
 
