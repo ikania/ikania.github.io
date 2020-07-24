@@ -25,7 +25,7 @@ $('document').ready(function(){
                 if (MCA < 50) {
                     pivot = 4;
                 }
-                else if (MCA > 50 && MCA < 65) {
+                else if (MCA >= 50 && MCA < 65) {
                     pivot = 5;
                 }
                 else {
